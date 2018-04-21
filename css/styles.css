@@ -1,0 +1,134 @@
+ div.content{
+    font-family: Georgia, "Times New Roman", Times, serif;
+    width: 70%;
+    margin: auto;
+}
+.header {
+    background-color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    color: white !important;
+    margin: auto; 
+    padding: 10px;
+    width: 100%;
+    min-width: 500px;
+} 
+
+body {
+	background-color:#eee;
+}
+
+.header > ul > li > a:link, a:visited {
+    background-color: grey;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    margin: -2px;
+}
+
+.header > ul > li > a:hover,a:active{
+    background-color: antiquewhite;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+    margin: -2px;
+}
+
+.header > img{
+    width:225px;
+    height:103.5px
+}
+
+.header > ul > li{
+    display: inline;
+    position: relative;
+    bottom: -16px;
+}
+
+.footer {
+    background-color: slategrey;
+    font-family: 'Calibri', 'Trebuchet MS', sans-serif;
+    font-weight: thin;
+    color: ghostwhite;
+    margin: bottom; 
+    padding: 10px;
+    width: 100%;
+    min-width: 500px;
+}
+
+.inside-content {
+	margin: auto;
+	width: 100%;
+	background-color: white;
+	padding: 10px 10px;
+}
+.whole-content {
+	background-image: none;
+	background-repeat: repeat-x;
+	background-attachment: scroll;
+}
+html {
+	background-image: none;
+}
+
+.button {
+	  display: inline-block;
+	  padding: 10px 24px;
+	  font-size: 14px;
+	  font-weight:bold;
+	  cursor: pointer;
+	  text-align: center;
+	  text-decoration: none;
+	  outline: none;
+	  color: black;
+	  border: 2px solid #4CAF50;
+	  border-radius: 10px;
+
+}
+.article {
+	background-color: #99FFFF;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+.article:hover {
+	box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.caseTable {
+	width: auto;
+	background-color:transparent;
+}
+
+.th {
+	text-align: right;
+	padding: 5px;
+	font-style: oblique;
+	
+}
+
+.data {
+	padding: 5px;
+	font-weight: bold;
+	
+}
+
+table {
+	background-color: #FFF;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+span.title {
+	border-style: outset;
+	padding: 5px 80px;
+	border-color: #FFFF00;
+	border-radius: 7px;
+	background-color: #D4DF00;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #FFFFFF;
+}
+
+a.textlink {
+	color: blue;
+}
