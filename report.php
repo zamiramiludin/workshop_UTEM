@@ -39,7 +39,7 @@
                     </div>
                 </nav>
                 
-        <?php if (isset($_SESSION['status'] == logged )) { ?> 
+        <?php //if (isset($_SESSION['status'] == logged )) { ?> 
             <!-- else masuk modal -->
 		
         <div class="container bg-light"> 
@@ -140,9 +140,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	  <script>
-        $('#submit-button').mousedown(function(){
-            swal("Good job!", "You clicked the button!", "info");
-        });
+        
+            swal({
+                title: "Perhatian!",
+                text: "Sila log masuk ke akaun anda atau daftar akaun baru untuk membuat sebarang laporan.",
+                icon: "warning",
+                closeOnClickOutside: false,
+            });
+        
     </script>
 </body>
 </html>

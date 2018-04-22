@@ -30,7 +30,7 @@
 				<div class="collapse navbar-collapse justify-content-md-center" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item active"><a class="nav-link" href="index.php"> LAMAN UTAMA<span class="sr-only">(current)</span></a></li>
-						<li class="nav-item"><a class="nav-link" href="report.html">LAPORAN</a></li>
+						<li class="nav-item"><a class="nav-link" href="report.php">LAPORAN</a></li>
 						<li class="nav-item"><a class="nav-link" href="about.html">TENTANG KAMI</a></li>
 					</ul>
 				</div>
