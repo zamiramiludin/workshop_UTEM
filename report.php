@@ -25,7 +25,6 @@
         </div>
     
                 <nav class="navbar container navbar-expand-lg navbar-light sticky-top justify-content-center" style="background-color: #ff4d4d;">
-                    <div class="container">
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -35,7 +34,14 @@
                             <li class="nav-item active"><a class="nav-link" href="report.html">LAPORAN</a></li>
                             <li class="nav-item"><a class="nav-link" href="about.html">TENTANG KAMI</a></li>
                         </ul>
-                    </div>
+                        <nav class="nav-item dropdown">
+    					<a class="nav-link btn btn-outline-light dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">//NAMA SAYA//</a>
+    					<div class="dropdown-menu">
+      					<a class="dropdown-item" href="#">Profil Saya</a>
+      					<div class="dropdown-divider"></div>
+      						<a class="dropdown-item" href="#">Log Keluar</a>
+   						</div>
+					</nav>	                        
                     </div>
                 </nav>
                 
@@ -49,15 +55,15 @@
         <form name="reportform" method="post" action="reportProcess.php" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="caseType">Jenis kes</label>
-                <input type="text" class="form-control" id="caseType" placeholder="" required>
+                <input type="text" class="form-control" id="caseType" placeholder="Contoh: Hilang" required>
             </div>
             <div class="form-group">
                 <label for="victimName">Nama mangsa</label>
-                <input type="text" class="form-control" id="victimName" placeholder="" required>
+                <input type="text" class="form-control" id="victimName" placeholder="Isi nama penuh mangsa " required>
             </div>           
             <div class="form-group">
                     <label for="victimAge">Umur (tahun)</label>
-                    <input type="number" class="form-control" name="victimAge" min="1" max="120" placeholder="" required>
+                    <input type="number" class="form-control" name="victimAge" min="1" max="120" placeholder="Bagi bayi, setkan kepada 1 tahun tetapi nyatakan di dalam Maklumat Tambahan." required>
             </div>
             <fieldset class="form-group row">
                 <legend class="col-form-legend col-sm-2">Jantina</legend>

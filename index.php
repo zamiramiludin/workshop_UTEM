@@ -33,6 +33,14 @@
 						<li class="nav-item"><a class="nav-link" href="report.php">LAPORAN</a></li>
 						<li class="nav-item"><a class="nav-link" href="about.html">TENTANG KAMI</a></li>
 					</ul>
+					<nav class="nav-item dropdown">
+    					<a class="nav-link btn btn-outline-light dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">//NAMA SAYA//</a>
+    					<div class="dropdown-menu">
+      					<a class="dropdown-item" href="#">Profil Saya</a>
+      					<div class="dropdown-divider"></div>
+      						<a class="dropdown-item" href="#">Log Keluar</a>
+   						</div>
+					</nav>				
 				</div>
 				
 			</nav>
@@ -114,10 +122,11 @@
 				<div class="col-sm-4">
 				Berita
 					<div class="embed-responsive embed-responsive-16by9">
-						<iframe width="560" height="315" src="https://www.youtube.com/embed/ENL6XKtygVU" frameborder="0" encrypted-media" allowfullscreen></iframe>
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/ENL6XKtygVU" frameborder="0" encrypted-media" allowfullscreen"></iframe>
 					</div>
 				</div>
 			</div>
+			<br>
 
         </div>
     </div>
