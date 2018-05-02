@@ -1,3 +1,20 @@
+<?php
+$hostname = "localhost";
+$username = "root";
+$password = "";
+$db = "hilang";
+
+$connect = mysqli_connect($hostname, $username, $password, $db);
+$query = "SELECT * FROM `state` WHERE 1";
+
+$result1 = mysqli_query($connect, $query);
+$options = "";
+while($row1 = mysqli_fetch_array($result1))
+{
+    $options = $options."<option>$row1[1]</option>";
+}
+?>
+
 
 <!DOCTYPE html>
 <html lang="ms">
@@ -93,14 +110,8 @@
                     </div>
                     <div class="form-group col-md-4">
                       <label for="state">Negeri</label>
-                      <select id="state" class="form-control">
-                        <option selected>Pilih...</option>
-                        <option>Perak</option>
-                        <option>Pulau Pinang</option>
-                        <option>Pahang</option>
-                        <option>Melaka</option>
-                        <option>Negeri Sembilan</option>
-                        <option>Terengganu</option>
+                      <select>
+                        <?php echp $options; ?>
                       </select>
                     </div>
             </div>
