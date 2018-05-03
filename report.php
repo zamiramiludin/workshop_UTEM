@@ -55,16 +55,16 @@
         <form name="reportform" method="post" action="reportProcess.php" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="caseType">Jenis kes</label>
-                <input type="text" class="form-control" id="caseType" placeholder="Contoh: Hilang" required>
+                <input type="text" class="form-control" id="caseType" name="caseType" placeholder="Contoh: Hilang" required>
             </div>
             <div class="form-group">
                 <label for="victimName">Nama mangsa</label>
-                <input type="text" class="form-control" id="victimName" placeholder="Isi nama penuh mangsa " required>
+                <input type="text" class="form-control" id="victimName" name="victimName" placeholder="Isi nama penuh mangsa " required>
             </div>     
             <div class="form-row">      
                 <div class="form-group col-md-6">
                         <label for="victimAge">Umur (tahun)</label>
-                        <input type="number" class="form-control" name="victimAge" min="1" max="120" required>
+                        <input type="number" class="form-control" name="victimAge" name="victimAge" min="1" max="120" required>
                 </div>
                 <div class="form-group col-md-2">
                 </div>
@@ -88,16 +88,16 @@
             </div>		            
             <div class="form-group">
                     <label for="address">Lokasi terakhir hilang</label>
-                    <input type="text" class="form-control" id="address" placeholder="Butiran alamat mangsa hilang" required>
+                    <input type="text" class="form-control" id="address" name="address" placeholder="Butiran alamat mangsa hilang" required>
             </div>           
             <div class="form-row">
                     <div class="form-group col-md-6">
                       <label for="city">Daerah</label>
-                      <input type="text" class="form-control" id="city">
+                      <input type="text" class="form-control" id="city" name="city" required>
                     </div>
                     <div class="form-group col-md-4">
                       <label for="state">Negeri</label>
-                      <select class="custom-select" id="inputGroupSelect03">
+                      <select class="custom-select" id="state" name="state" >
                         <option selected>Sila pilih ...</option>
                         <option value"Johor">Johor</option>
                         <option value"Kedah">Kedah</option>
@@ -120,38 +120,30 @@
             </div>
             <div class="form-group">
                 <label for="date">Tarikh kejadian berlaku</label>
-                <input type="date" id="date" placeholder="mm/dd/yyyy" name="date" required>
+                <input type="date" id="date" name="date" placeholder="mm/dd/yyyy" name="date" required>
             </div>
             <div class="form-group">
                     <label for="attire">Butiran pakaian mangsa ketika hilang</label>
-                    <input type="text" class="form-control" id="attire" placeholder="">
+                    <input type="text" class="form-control" id="attire" name="attire" placeholder="">
             </div>                  
             <div class="form-group">
                     <label for="characteristic">Ciri-ciri rupa mangsa</label>
-                    <input type="text" class="form-control" id="characteristic" placeholder="">
+                    <input type="text" class="form-control" id="characteristic" name="characteristic" placeholder="">
             </div>      
             <div class="form-group row">
                 <label class="col-md-3" for="victimPicture">Pilih fail gambar mangsa</label>
-                <div class="input-group col-md-6">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text">Muat naik</span>
-                        </div>
-                        <div class="custom-file">
-                          <input type="file" class="custom-file-input" accept="image/jpeg" id="victimPicture" required>
-                          <label class="custom-file-label" for="victimPicture">Pilih gambar</label>
-                        </div>
-                      </div>                
+                <input type="file" name="victimPicture" id="victimPicture">
             </div>
             <div class="form-group">
                 <label for="relation">Pertalian dengan mangsa</label>
-                <input type="text" class="form-control" id="relation" placeholder="Contoh: Ayah" required>
+                <input type="text" class="form-control" id="relation" name="relation" placeholder="Contoh: Ayah" required>
             </div>            
             <div class="form-group">
-                    <label for="info">Maklumat tambahan</label>
-                    <input type="text" class="form-control" id="info" placeholder="">
+                    <label for="info">Deskripsi</label>
+                    <input type="text" class="form-control" id="info" name="info" placeholder="" required>
             </div>                
             <div class="form-group">
-                <button type="submit" id="submit-button" class="btn btn-success">Hantar</button>
+                <button type="submit" id="submit" name="submit" class="btn btn-success">Hantar</button>
                 <button type="reset" class="btn btn-danger">Tetapkan semula</button>
             </div>
         </form>
