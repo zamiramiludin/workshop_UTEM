@@ -1,20 +1,3 @@
-<?php
-$hostname = "localhost";
-$username = "root";
-$password = "";
-$db = "hilang";
-
-$connect = mysqli_connect($hostname, $username, $password, $db);
-$query = "SELECT * FROM `state` WHERE 1";
-
-$result1 = mysqli_query($connect, $query);
-$options = "";
-while($row1 = mysqli_fetch_array($result1))
-{
-    $options = $options."<option>$row1[1]</option>";
-}
-?>
-
 
 <!DOCTYPE html>
 <html lang="ms">
@@ -77,28 +60,32 @@ while($row1 = mysqli_fetch_array($result1))
             <div class="form-group">
                 <label for="victimName">Nama mangsa</label>
                 <input type="text" class="form-control" id="victimName" placeholder="Isi nama penuh mangsa " required>
-            </div>           
-            <div class="form-group">
-                    <label for="victimAge">Umur (tahun)</label>
-                    <input type="number" class="form-control" name="victimAge" min="1" max="120" placeholder="Bagi bayi, setkan kepada 1 tahun tetapi nyatakan di dalam Maklumat Tambahan." required>
-            </div>
-            <fieldset class="form-group row">
-                <legend class="col-form-legend col-sm-2">Jantina</legend>
-                <div class="col-sm-10">
-                <div class="form-check">
-                    <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="gender" id="gender" value="Lelaki">
-                    Lelaki
-                    </label>
-                </div>		
-                <div class="form-check">
-                    <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="gender" id="gender" value="Perempuan">
-                    Perempuan
-                    </label>
+            </div>     
+            <div class="form-row">      
+                <div class="form-group col-md-6">
+                        <label for="victimAge">Umur (tahun)</label>
+                        <input type="number" class="form-control" name="victimAge" min="1" max="120" required>
                 </div>
+                <div class="form-group col-md-2">
                 </div>
-            </fieldset>		            
+                <fieldset class="form-group col-md-4">
+                    <label>Jantina</label>
+                    <div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="gender" id="gender" value="Lelaki">
+                            Lelaki
+                            </label>
+                        </div>		
+                        <div class="form-check">
+                            <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="gender" id="gender" value="Perempuan">
+                            Perempuan
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>		            
             <div class="form-group">
                     <label for="address">Lokasi terakhir hilang</label>
                     <input type="text" class="form-control" id="address" placeholder="Butiran alamat mangsa hilang" required>
@@ -110,8 +97,24 @@ while($row1 = mysqli_fetch_array($result1))
                     </div>
                     <div class="form-group col-md-4">
                       <label for="state">Negeri</label>
-                      <select>
-                        <?php echp $options; ?>
+                      <select class="custom-select" id="inputGroupSelect03">
+                        <option selected>Sila pilih ...</option>
+                        <option value"Johor">Johor</option>
+                        <option value"Kedah">Kedah</option>
+                        <option value"Kelantan">Kelantan</option>
+                        <option value"Kuala Lumpur">Kuala Lumpur</option>
+                        <option value"Labuan">Labuan</option>
+                        <option value"Melaka">Melaka</option>
+                        <option value"Negeri Sembilan">Negeri Sembilan</option>
+                        <option value"Pahang">Pahang</option>
+                        <option value"Perak">Perak</option>
+                        <option value"Perlis">Perlis</option>
+                        <option value"Pulau Pinang">Pulau Pinang</option>
+                        <option value"Putrajaya">Putrajaya</option>
+                        <option value"Sabah">Sabah</option>
+                        <option value"Sarawak">Sarawak</option>
+                        <option value"Selangor">Selangor</option>
+                        <option value"Terengganu">Terengganu</option>
                       </select>
                     </div>
             </div>
@@ -140,6 +143,10 @@ while($row1 = mysqli_fetch_array($result1))
                       </div>                
             </div>
             <div class="form-group">
+                <label for="relation">Pertalian dengan mangsa</label>
+                <input type="text" class="form-control" id="relation" placeholder="Contoh: Ayah" required>
+            </div>            
+            <div class="form-group">
                     <label for="info">Maklumat tambahan</label>
                     <input type="text" class="form-control" id="info" placeholder="">
             </div>                
@@ -160,7 +167,7 @@ while($row1 = mysqli_fetch_array($result1))
         
             swal({
                 title: "Perhatian!",
-                text: "Sila log masuk ke akaun anda atau daftar akaun baru untuk membuat sebarang laporan.",
+                text: "Untuk membuat sebarang laporan sila log masuk ke akaun anda atau daftar akaun baru bagi mengelakkan ralat sistem.",
                 icon: "warning",
                 closeOnClickOutside: false,
             });
