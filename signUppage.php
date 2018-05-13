@@ -31,7 +31,7 @@
 						<div class="collapse navbar-collapse" id="navbarSupportedContent">
 							<ul class="navbar-nav mr-auto">
 								<li class="nav-item"><a class="nav-link" href="index.php"> LAMAN UTAMA<span class="sr-only">(current)</span></a></li>
-								<li class="nav-item"><a class="nav-link" href="report.html">LAPORAN</a></li>
+								<li class="nav-item"><a class="nav-link" href="report.php">LAPORAN</a></li>
 								<li class="nav-item"><a class="nav-link" href="about.html">TENTANG KAMI</a></li>
 							</ul>
 						</div>
@@ -42,41 +42,49 @@
 						<br>
 			<div class="container-fluid">				
 				<h1>Pendaftaran Pengguna Baru</h1>
-				<form>
+				<form name="registerationform" method="post" action="registerProcess.php" >
 					<div class="form-group">
 						<label for="fullname">Nama penuh</label>
-						<input type="text" class="form-control" id="fullname" placeholder="" required>
+						<input type="text" class="form-control" id="fullname" name="fullname" placeholder="" required>
 					</div> 					
 					<div class="form-group">
                     <label for="address">Alamat</label>
-                    <input type="text" class="form-control" id="address" placeholder="Alamat tempat tinggal" required>
+                    <input type="text" class="form-control" id="address" name="address" placeholder="Alamat tempat tinggal" required>
             		</div>           
 				<div class="form-row">
-						<div class="form-group col-md-6">
-						<label for="city">Daerah/Bandar</label>
-						<select id="city" class="form-control">
-							<option>Pilih...</option>
-						</select>
-						</div>
+				<div class="form-group col-md-6">
+                      <label for="city">Daerah</label>
+                      <input type="text" class="form-control" id="city" name="city" required>
+                    </div>
 						<div class="form-group col-md-4">
 						<label for="state">Negeri</label>
-						<select id="state" class="form-control">
-							<option>Pilih...</option>
-							<option>Perak</option>
-							<option>Pulau Pinang</option>
-							<option>Pahang</option>
-							<option>Melaka</option>
-							<option>Negeri Sembilan</option>
-							<option>Terengganu</option>
+						<select class="custom-select" id="state" name="state">
+							<option selected>Sila pilih ...</option>
+							<option value"Johor">Johor</option>
+							<option value"Kedah">Kedah</option>
+							<option value"Kelantan">Kelantan</option>
+							<option value"Kuala Lumpur">Kuala Lumpur</option>
+							<option value"Labuan">Labuan</option>
+							<option value"Melaka">Melaka</option>
+							<option value"Negeri Sembilan">Negeri Sembilan</option>
+							<option value"Pahang">Pahang</option>
+							<option value"Perak">Perak</option>
+							<option value"Perlis">Perlis</option>
+							<option value"Pulau Pinang">Pulau Pinang</option>
+							<option value"Putrajaya">Putrajaya</option>
+							<option value"Sabah">Sabah</option>
+							<option value"Sarawak">Sarawak</option>
+							<option value"Selangor">Selangor</option>
+							<option value"Terengganu">Terengganu</option>
 						</select>
-					</div>
-				</div> 			
+						</div>
+					</div> 			
 				<div class="form-group">
                 	<label for="dob">Tarikh lahir</label>
-                	<input type="date" id="dob" placeholder="mm/dd/yyyy" name="date" required>
+                	<input type="date" id="dob" name="dob" placeholder="mm/dd/yyyy" name="date" required>
 				</div>				
 				<fieldset class="form-group row">
-					<legend class="col-form-legend col-sm-2">Jantina</legend>
+					<label class="col-sm-1">Jantina</label>
 					<div class="col-sm-10">
 					<div class="form-check">
 						<label class="form-check-label">
@@ -91,23 +99,25 @@
 						</label>
 					</div>
 					</div>
-				</fieldset>				
-				<div class="form-group">
-						<label for="contactNo">Nombor telefon/bimbit</label>
-						<input type="tel" class="form-control" id="contactNo" placeholder="" required>
-				</div> 	
-				<div class="form-group">
-						<label for="email">Alamat E-mail</label>
-						<input type="email" class="form-control" id="email" placeholder="" required>
-				</div> 											
+				</fieldset>			
+				<div class="form-row">  	
+					<div class="form-group col-md-6">
+							<label for="contactNo">Nombor telefon/bimbit</label>
+							<input type="tel" class="form-control" id="contactNo" name="contactNo" placeholder="" required>
+					</div> 	
+					<div class="form-group col-md-6">
+							<label for="email">Alamat E-mail</label>
+							<input type="email" class="form-control" id="email" name="email" placeholder="" required>
+					</div> 	
+				</div>										
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="username">Nama pengguna</label>
-							<input type="text" class="form-control" id="username" placeholder="Contoh : abu2012" required>
+							<input type="text" class="form-control" id="username" name="username" placeholder="Contoh : abu2012" required>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="password">Kata laluan</label>
-							<input type="password" class="form-control" id="password" placeholder="Kata laluan" required>
+							<input type="password" class="form-control" id="password" name="password" placeholder="Kata laluan" required>
 						</div>
 					</div>
 				<div class="form-group">

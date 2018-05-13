@@ -1,26 +1,32 @@
+
 <?php
-//session_start();
- //if($_SESSION['status']!='logged')
-	// header("Location:error.php");
+session_start();
+
+$conn = mysqli_connect("localhost", "root", "", "hilang");
+if (!$conn)
+  {
+  die("Connection error: " . mysqli_connect_error());
+  }
+$sql = "SELECT * FROM report WHERE approval != '1' OR rejected != '1'";
+$result = mysqli_query($conn, $sql);
+if (!$result)
+{
+    echo("Error description: " . mysqli_error($result));
+}
 ?>
+
 <!DOCTYPE html>
 
 <html lang="en">
-    <!--<![endif]-->
     <!-- BEGIN HEAD -->
 
     <head>
         <meta charset="utf-8" />
-        <title>Admin Dashboard</title>
+        <title>Laporan</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
-        <meta content="Preview page of Metronic Admin Theme #6 for statistics, charts, recent events and reports" name="description" />
+        <meta content="Preview page of Metronic Admin Theme #1 for statistics, charts, recent events and reports" name="description" />
         <meta content="" name="author" />
-        <!-- ICON -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-        <!-- BEGIN LAYOUT FIRST STYLES -->
-        <link href="//fonts.googleapis.com/css?family=Oswald:400,300,700" rel="stylesheet" type="text/css" />
-        <!-- END LAYOUT FIRST STYLES -->
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
         <link href="../metronic_v4.7.1/theme/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -39,226 +45,274 @@
         <link href="../metronic_v4.7.1/theme/assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
         <!-- END THEME GLOBAL STYLES -->
         <!-- BEGIN THEME LAYOUT STYLES -->
-        <link href="../metronic_v4.7.1/theme/assets/layouts/layout6/css/layout.min.css" rel="stylesheet" type="text/css" />
-        <link href="../metronic_v4.7.1/theme/assets/layouts/layout6/css/custom.min.css" rel="stylesheet" type="text/css" />
+        <link href="../metronic_v4.7.1/theme/assets/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css" />
+        <link href="../metronic_v4.7.1/theme/assets/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />
+        <link href="../metronic_v4.7.1/theme/assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
         <!-- END THEME LAYOUT STYLES -->
         <link rel="shortcut icon" href="favicon.ico" /> </head>
     <!-- END HEAD -->
 
-    <body class="">
-        <!-- BEGIN HEADER -->
-        <header class="page-header">
-            <nav class="navbar" role="navigation">
-                <div class="container-fluid">
-                    <div class="havbar-header">
-                        <!-- BEGIN LOGO -->
-                        <a id="index" class="navbar-brand" href="../index.php">
-                            <img src="../images/websitelogo.png" width="120" height="50" alt="Logo"> </a>
-                        <!-- END LOGO -->
-                        <!-- BEGIN TOPBAR ACTIONS -->
-                        <div class="topbar-actions">
-                            <!-- DOC: Apply "search-form-expanded" right after the "search-form" class to have half expanded search box -->
-                            <form class="search-form" action="extra_search.html" method="GET">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search here" name="query">
-                                    <span class="input-group-btn">
-                                        <a href="javascript:;" class="btn md-skip submit">
-                                            <i class="fas fa-search"></i>
-                                        </a>
-                                    </span>
-                                </div>
-                            </form>
-                            <!-- END HEADER SEARCH BOX -->
+    <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+        <div class="page-wrapper">
+            <!-- BEGIN HEADER -->
+            <div class="page-header navbar navbar-fixed-top">
+                <!-- BEGIN HEADER INNER -->
+                <div class="page-header-inner ">
+                    <!-- BEGIN LOGO -->
+                        <a href="index.html">
+                            <img src="../images/websitelogo.png"  width="120" height="50" alt="logo" class="logo-default" /> 
+                        </a>
+                    <!-- END LOGO -->
 
-                            <!-- BEGIN USER PROFILE -->
-                            <div class="btn-group-img btn-group">
-                                <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <img src="../metronic_v4.7.1/theme/assets/layouts/layout5/img/avatar1.jpg" alt=""> </button>
-                                <ul class="dropdown-menu-v2" role="menu">
+                    <!-- BEGIN TOP NAVIGATION MENU -->
+                    <div class="top-menu">
+                        <ul class="nav navbar-nav pull-right">
+
+                            <!-- BEGIN USER LOGIN DROPDOWN -->
+                            <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                            <li class="dropdown dropdown-user">
+                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                    <img alt="" class="img-circle" src="../assets/layouts/layout/img/avatar3_small.jpg" />
+                                    <span class="username username-hide-on-mobile"> Admin </span>
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-default">
                                     <li>
                                         <a href="page_user_profile_1.html">
-                                            <i class="icon-user"></i> My Profile
-                                            <span class="badge badge-danger">1</span>
-                                        </a>
+                                            <i class="fa fa-cogs"></i> Tetapan Profil </a>
                                     </li>
                                     <li>
                                         <a href="app_inbox.html">
-                                            <i class="icon-envelope-open"></i> My Inbox
+                                            <i class="icon-envelope-open"></i> Peti Mesej
                                             <span class="badge badge-danger"> 3 </span>
                                         </a>
                                     </li>
-                                    <li>
-
-                                    <li class="divider"> </li>
-
                                     <li>
                                         <a href="../logout.php">
                                             <i class="icon-key"></i> Log Keluar </a>
                                     </li>
                                 </ul>
-                            </div>
-                            <!-- END USER PROFILE -->
-                        </div>
-                        <!-- END TOPBAR ACTIONS -->
+                            </li>
+                            <!-- END USER LOGIN DROPDOWN -->
+
+                        </ul>
                     </div>
+                    <!-- END TOP NAVIGATION MENU -->
                 </div>
-                <!--/container-->
-            </nav>
-        </header>
-        <!-- END HEADER -->
-        <!-- BEGIN CONTAINER -->
-        <div class="container-fluid">
-            <div class="page-content page-content-popup">
-                <div class="page-content-fixed-header">
-                    <!-- BEGIN BREADCRUMBS -->
-                    <ul class="page-breadcrumb">
-                        <li>
-                            <a href="#">Laporan</a>
-                        </li>
-               
-                    </ul>
-                    <!-- END BREADCRUMBS -->
-                </div>
-
-                <div class="page-fixed-main-content">
-                    <!-- BEGIN PAGE BASE CONTENT -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!-- BEGIN EXAMPLE TABLE PORTLET-->
-                            <div class="portlet light portlet-fit">
-                                <div class="portlet-title">
-                                    <div class="caption">
-                                        <i class="icon-settings font-red"></i>
-                                        <span class="caption-subject font-red sbold uppercase">Laporan Baru</span>
-                                    </div>
-
-                                </div>
-                                <div class="portlet-body">
-                                    <div class="table-toolbar">
-
-                                    <div id="sample_editable_1_wrapper" class="dataTables_wrapper no-footer"><div class="row"><div class="col-md-6 col-sm-6"><div class="dataTables_length" id="sample_editable_1_length"><label> <select name="sample_editable_1_length" aria-controls="sample_editable_1" class="form-control input-sm input-xsmall input-inline"><option value="5">5</option><option value="15">15</option><option value="20">20</option><option value="-1">All</option></select> records</label></div></div><div class="col-md-6 col-sm-6"><div id="sample_editable_1_filter" class="dataTables_filter"><label>Search:<input class="form-control input-sm input-small input-inline" placeholder="" aria-controls="sample_editable_1" type="search"></label></div></div></div><div class="table-scrollable"><table class="table table-striped table-hover table-bordered dataTable no-footer" id="sample_editable_1" role="grid" aria-describedby="sample_editable_1_info" style="width: 1167px;">
-                                        <thead>
-                                            <tr role="row">
-                                                <th class="sorting_asc" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" style="width: 181.2px;" aria-label="" aria-sort="ascending"> No. Laporan </th>
-                                                <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" style="width: 203.2px;" aria-label=""> Jenis Kes </th>
-                                                <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" style="width: 128.2px;" aria-label=""> Nama Mangsa </th>
-                                                <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" style="width: 135.2px;" aria-label=""> Umur </th>
-                                                <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" style="width: 96.2px;" aria-label=""> Jantina </th>
-                                                <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" style="width: 131px;" aria-label=""> Bandar/Daerah </th>
-                                                <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" style="width: 131px;" aria-label=""> Negeri </th>
-                                                <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" style="width: 131px;" aria-label=""> View </th>
-
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr role="row" class="odd">
-                                                <td class="sorting_1"> alex </td>
-                                                <td> Alex Nilson </td>
-                                                <td> 1234 </td>
-                                                <td class="center"> power user </td>
-                                                <td>
-                                                    <a class="edit" href="javascript:;"> Edit </a>
-                                                </td>
-                                                <td>
-                                                    <a class="delete" href="javascript:;"> Delete </a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table></div>
-                                    <div class="row">
-                                    <div class="col-md-5 col-sm-5">
-                                    <div class="dataTables_info" id="sample_editable_1_info" role="status" aria-live="polite">Showing 1 to 5 of 7 entries</div>
-                                    </div>
-                                    <div class="col-md-7 col-sm-7">
-                                    <div class="dataTables_paginate paging_bootstrap_number" id="sample_editable_1_paginate">
-                                    <ul class="pagination" style="visibility: visible;">
-                                    <li class="prev disabled"><a href="#" title="Prev"><i class="fa fa-angle-left"></i></a></li>
-                                    <li class="active"><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li class="next"><a href="#" title="Next">
-                                    <i class="fa fa-angle-right"></i></a></li></ul>
-                                    </div>
-                                    </div>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- END EXAMPLE TABLE PORTLET-->
-                            <div class="portlet light portlet-fit">
-                                <div class="portlet-title">
-                                    <div class="caption">
-                                        <i class="icon-settings font-red"></i>
-                                        <span class="caption-subject font-red sbold uppercase">Diluluskan</span>
-                                    </div>
-
-                                </div>
-                                <div class="portlet-body">
-                                    <div class="table-toolbar">
-
-                                    <div id="sample_editable_1_wrapper" class="dataTables_wrapper no-footer"><div class="row"><div class="col-md-6 col-sm-6"><div class="dataTables_length" id="sample_editable_1_length"><label> <select name="sample_editable_1_length" aria-controls="sample_editable_1" class="form-control input-sm input-xsmall input-inline"><option value="5">5</option><option value="15">15</option><option value="20">20</option><option value="-1">All</option></select> records</label></div></div><div class="col-md-6 col-sm-6"><div id="sample_editable_1_filter" class="dataTables_filter"><label>Search:<input class="form-control input-sm input-small input-inline" placeholder="" aria-controls="sample_editable_1" type="search"></label></div></div></div><div class="table-scrollable"><table class="table table-striped table-hover table-bordered dataTable no-footer" id="sample_editable_1" role="grid" aria-describedby="sample_editable_1_info" style="width: 1167px;">
-                                        <thead>
-                                            <tr role="row">
-                                                <th class="sorting_asc" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" style="width: 181.2px;" aria-label="" aria-sort="ascending"> No. Laporan </th>
-                                                <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" style="width: 203.2px;" aria-label=""> Jenis Kes </th>
-                                                <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" style="width: 128.2px;" aria-label=""> Nama Mangsa </th>
-                                                <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" style="width: 135.2px;" aria-label=""> Umur </th>
-                                                <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" style="width: 96.2px;" aria-label=""> Jantina </th>
-                                                <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" style="width: 131px;" aria-label=""> Bandar/Daerah </th>
-                                                <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" style="width: 131px;" aria-label=""> Negeri </th>
-                                                <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" style="width: 131px;" aria-label=""> View </th>
-
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr role="row" class="odd">
-                                                <td class="sorting_1"> alex </td>
-                                                <td> Alex Nilson </td>
-                                                <td> 1234 </td>
-                                                <td class="center"> power user </td>
-                                                <td>
-                                                    <a class="edit" href="javascript:;"> Edit </a>
-                                                </td>
-                                                <td>
-                                                    <a class="delete" href="javascript:;"> Delete </a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table></div>
-                                    <div class="row">
-                                    <div class="col-md-5 col-sm-5">
-                                    <div class="dataTables_info" id="sample_editable_1_info" role="status" aria-live="polite">Showing 1 to 5 of 7 entries</div>
-                                    </div>
-                                    <div class="col-md-7 col-sm-7">
-                                    <div class="dataTables_paginate paging_bootstrap_number" id="sample_editable_1_paginate">
-                                    <ul class="pagination" style="visibility: visible;">
-                                    <li class="prev disabled"><a href="#" title="Prev"><i class="fa fa-angle-left"></i></a></li>
-                                    <li class="active"><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li class="next"><a href="#" title="Next">
-                                    <i class="fa fa-angle-right"></i></a></li></ul>
-                                    </div>
-                                    </div>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>                            
-                        </div>
-                    </div>
-
-
-                    
-
-
-
-
-
-
-                    <!-- END PAGE BASE CONTENT -->
-                </div>
-
+                <!-- END HEADER INNER -->
             </div>
+            <!-- END HEADER -->
+            <!-- BEGIN HEADER & CONTENT DIVIDER -->
+            <div class="clearfix"> </div>
+            <!-- END HEADER & CONTENT DIVIDER -->
+            <!-- BEGIN CONTAINER -->
+            <div class="page-container">
+                <!-- BEGIN SIDEBAR -->
+                <div class="page-sidebar-wrapper">
+                    <!-- BEGIN SIDEBAR -->
+                    <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+                    <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+                    <div class="page-sidebar navbar-collapse collapse">
+                        <!-- BEGIN SIDEBAR MENU -->
+                        <!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
+                        <!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
+                        <!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
+                        <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+                        <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
+                        <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+                        <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+                            <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
+                            <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                            <li class="sidebar-toggler-wrapper hide">
+                                <div class="sidebar-toggler">
+                                    <span></span>
+                                </div>
+                            </li>
+                            <!-- END SIDEBAR TOGGLER BUTTON -->
+
+                            <li class="nav-item">
+                                <a href="admin.php" class="nav-link nav-toggle">
+                                    <i class="icon-home"></i>
+                                    <span class="title">Utama</span>
+                                    <span class="selected"></span>
+                                </a>
+                            </li>
+                            <li class="nav-item active open">
+                                <a href="reportList.php" class="nav-link nav-toggle">
+                                    <i class="icon-briefcase"></i>
+                                    <span class="title">Laporan</span>
+                                    <span class="selected"></span>
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- END SIDEBAR MENU -->
+                        <!-- END SIDEBAR MENU -->
+                    </div>
+                    <!-- END SIDEBAR -->
+                </div>
+                <!-- END SIDEBAR -->
+                <!-- BEGIN CONTENT -->
+                <div class="page-content-wrapper">
+                    <!-- BEGIN CONTENT BODY -->
+                    <div class="page-content">
+                        <!-- BEGIN PAGE HEADER-->
+                        <!-- BEGIN PAGE BAR -->
+                        <div class="page-bar">
+                            <ul class="page-breadcrumb">
+                                <li>
+                                    <a href="admin.php">Utama</a>
+                                    <i class="fa fa-circle"></i>
+                                </li>                                       
+                                <li>
+                                    <span>Laporan</span>
+                                </li>
+                            </ul>
+                            <div class="page-toolbar">
+                                <div  class=" btn btn-sm" data-container="body" data-placement="bottom" data-original-title="Change dashboard date range">
+                                    <i class="icon-calendar"></i>&nbsp;
+                                    <?php echo(date("d-m-Y")); ?> &nbsp;
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END PAGE BAR -->
+                        <!-- BEGIN PAGE TITLE-->
+                        <h1 class="page-title"> Laporan
+                        </h1>
+                        <!-- END PAGE TITLE-->
+                        <!-- END PAGE HEADER-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                                <div class="portlet light portlet-fit bordered">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="icon-layers font-blue"></i>
+                                            <span class="caption-subject font-blue sbold uppercase">Laporan Baru</span>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
+                                            <thead>
+                                                <tr>
+                                                    <th> No. Laporan </th>
+                                                    <th> Tarikh </th>
+                                                    <th> Jenis Kes </th>
+                                                    <th> Nama Penuh </th>
+                                                    <th> Umur </th>
+                                                    <th> Jantina </th>
+                                                    <th> Negeri </th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+<?php 
+    $myrow = mysqli_fetch_row($result);
+    do{
+        echo"
+            <tr>
+                <td>$myrow[0]</td>
+                <td>$myrow[17]</td>
+                <td>$myrow[1]</td>
+                <td>$myrow[2]</td>
+                <td>$myrow[3]</td>
+                <td>$myrow[4]</td>
+                <td>$myrow[7]</td>
+                <td>
+                <form name='form1' method='POST' action='reportDetails.php'>		
+                    <input name='View' type='hidden' id='View' value='$myrow[0]'>
+                    <input type='submit' class='btn green-meadow' name='submit' value='Lihat'>
+                </form>
+                </td>
+            </tr>";
+        }
+        while($myrow = mysqli_fetch_row($result) ); ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- END EXAMPLE TABLE PORTLET-->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                                <div class="portlet light portlet-fit bordered">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="icon-layers font-green"></i>
+                                            <span class="caption-subject font-green sbold uppercase">Lulus</span>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+
+                                        <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
+                                            <thead>
+                                                <tr>
+                                                    <th> No. Laporan </th>
+                                                    <th> Tarikh </th>
+                                                    <th> Jenis Kes </th>
+                                                    <th> Nama Penuh </th>
+                                                    <th> Umur </th>
+                                                    <th> Jantina </th>
+                                                    <th> Negeri </th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+<?php 
+    $sql2 = "SELECT * FROM report WHERE approval == '1'";
+    $result2 = mysqli_query($conn, $sql2);
+    if (!$result2)
+    {
+        echo("Error description: " . mysqli_error($result2));
+    }
+    
+    $myrow2 = mysqli_fetch_row($result2);
+    do{
+        echo"
+            <tr>
+                <td>$myrow[0]</td>
+                <td>$myrow[17]</td>
+                <td>$myrow[1]</td>
+                <td>$myrow[2]</td>
+                <td>$myrow[3]</td>
+                <td>$myrow[4]</td>
+                <td>$myrow[7]</td>
+                <td>
+                <form name='form1' method='post' action='#'>		
+                    <input name='View' type='hidden' id='View' value='$myrow[0]'>
+                    <input type='submit' class='btn green-meadow'  name='submit' value='Lihat'>
+                </form>
+                </td>
+            </tr>";
+        }
+        while($myrow = mysqli_fetch_row($result) );  ?>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- END EXAMPLE TABLE PORTLET-->
+                            </div>
+                        </div>                        
+                    </div>
+                    <!-- END CONTENT BODY -->
+                </div>
+                <!-- END CONTENT -->
+            </div>
+            <!-- END CONTAINER -->
+            <!-- BEGIN FOOTER -->
+            <div class="page-footer">
+                <div class="page-footer-inner"> 2016 &copy; Metronic Theme By
+                    <a target="_blank" href="http://keenthemes.com">Keenthemes</a> &nbsp;|&nbsp;
+                    <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
+                </div>
+                <div class="scroll-to-top">
+                    <i class="icon-arrow-up"></i>
+                </div>
+            </div>
+            <!-- END FOOTER -->
         </div>
-        <!-- END CONTAINER -->
 
         <!--[if lt IE 9]>
 <script src="../assets/global/plugins/respond.min.js"></script>
@@ -312,7 +366,8 @@
         <script src="../metronic_v4.7.1/theme/assets/pages/scripts/dashboard.min.js" type="text/javascript"></script>
         <!-- END PAGE LEVEL SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
-        <script src="../metronic_v4.7.1/theme/assets/layouts/layout6/scripts/layout.min.js" type="text/javascript"></script>
+        <script src="../metronic_v4.7.1/theme/assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
+        <script src="../metronic_v4.7.1/theme/assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
         <script src="../metronic_v4.7.1/theme/assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
         <script src="../metronic_v4.7.1/theme/assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->

@@ -1,7 +1,24 @@
 
 <?php
 session_start();
+
+$reportNo = $_POST['View'];
+
+$conn = mysqli_connect("localhost", "root", "", "hilang");
+if (!$conn)
+  {
+  die("Connection error: " . mysqli_connect_error());
+  }
+$sql = "SELECT report.*, user.username, user.fullname, user.email, user.contactNO FROM report INNER JOIN user ON report.reporter = user.fullname WHERE reportNO = '$reportNo'";
+$result = mysqli_query($conn, $sql);
+if (!$result)
+{
+    echo("Error description: " . mysqli_error($result));
+}
+
+
 ?>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -9,7 +26,7 @@ session_start();
 
     <head>
         <meta charset="utf-8" />
-        <title>Papan Pemuka</title>
+        <title>Butiran Laporan</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="Preview page of Metronic Admin Theme #1 for statistics, charts, recent events and reports" name="description" />
@@ -42,7 +59,7 @@ session_start();
     <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
         <div class="page-wrapper">
             <!-- BEGIN HEADER -->
-            <div class="page-header navbar navbar-fixed-top">
+            <!-- <div class="page-header navbar navbar-fixed-top">
                 <!-- BEGIN HEADER INNER -->
                 <div class="page-header-inner ">
                     <!-- BEGIN LOGO -->
@@ -53,7 +70,7 @@ session_start();
 
                     <!-- BEGIN TOP NAVIGATION MENU -->
                     <div class="top-menu">
-                        <ul class="nav navbar-nav pull-right">  
+                        <ul class="nav navbar-nav pull-right">
 
                             <!-- BEGIN USER LOGIN DROPDOWN -->
                             <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
@@ -87,7 +104,7 @@ session_start();
                     <!-- END TOP NAVIGATION MENU -->
                 </div>
                 <!-- END HEADER INNER -->
-            </div>
+            </div> -->
             <!-- END HEADER -->
             <!-- BEGIN HEADER & CONTENT DIVIDER -->
             <div class="clearfix"> </div>
@@ -109,22 +126,15 @@ session_start();
                         <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
                         <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
                             <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
-                            <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-                            <li class="sidebar-toggler-wrapper hide">
-                                <div class="sidebar-toggler">
-                                    <span></span>
-                                </div>
-                            </li>
-                            <!-- END SIDEBAR TOGGLER BUTTON -->
 
-                            <li class="nav-item start active open">
-                                <a href="#" class="nav-link nav-toggle">
+                            <li class="nav-item">
+                                <a href="admin.php" class="nav-link nav-toggle">
                                     <i class="icon-home"></i>
                                     <span class="title">Papan Pemuka</span>
                                     <span class="selected"></span>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item active open">
                                 <a href="reportList.php" class="nav-link nav-toggle">
                                     <i class="icon-briefcase"></i>
                                     <span class="title">Laporan</span>
@@ -147,8 +157,16 @@ session_start();
                         <div class="page-bar">
                             <ul class="page-breadcrumb">
                                 <li>
-                                    <span>Papan Pemuka</span>
+                                    <a href="admin.php">Utama</a>
+                                    <i class="fa fa-circle"></i>
+                                </li>                                
+                                <li>
+                                    <a href="reportList.php">Laporan</a>
+                                    <i class="fa fa-circle"></i>
                                 </li>
+                                <li>
+                                    <span>Butiran Laporan</span>
+                                </li>                                
                             </ul>
                             <div class="page-toolbar">
                                 <div  class=" btn btn-sm" data-container="body" data-placement="bottom" data-original-title="Change dashboard date range">
@@ -159,158 +177,105 @@ session_start();
                         </div>
                         <!-- END PAGE BAR -->
                         <!-- BEGIN PAGE TITLE-->
-                        <h1 class="page-title"> Papan Pemuka
+                        <h1 class="page-title">Butiran Laporan
                         </h1>
                         <!-- END PAGE TITLE-->
                         <!-- END PAGE HEADER-->
-                        <!-- BEGIN DASHBOARD STATS 1-->
                         <div class="row">
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                <a class="dashboard-stat dashboard-stat-v2 blue" href="#">
-                                    <div class="visual">
-                                        <i class="fa fa-comments"></i>
-                                    </div>
-                                    <div class="details">
-                                        <div class="number">
-                                            <span data-counter="counterup" data-value="1349">0</span>
-                                        </div>
-                                        <div class="desc"> Laporan Baru </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                <a class="dashboard-stat dashboard-stat-v2 red" href="#">
-                                    <div class="visual">
-                                        <i class="fa fa-bar-chart-o"></i>
-                                    </div>
-                                    <div class="details">
-                                        <div class="number">
-                                            <span data-counter="counterup" data-value="12,5">0</span>M$ </div>
-                                        <div class="desc"> Total Profit </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                <a class="dashboard-stat dashboard-stat-v2 green" href="#">
-                                    <div class="visual">
-                                        <i class="fa fa-shopping-cart"></i>
-                                    </div>
-                                    <div class="details">
-                                        <div class="number">
-                                            <span data-counter="counterup" data-value="549">0</span>
-                                        </div>
-                                        <div class="desc"> New Orders </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                <a class="dashboard-stat dashboard-stat-v2 purple" href="#">
-                                    <div class="visual">
-                                        <i class="fa fa-globe"></i>
-                                    </div>
-                                    <div class="details">
-                                        <div class="number"> +
-                                            <span data-counter="counterup" data-value="89"></span>% </div>
-                                        <div class="desc"> Brand Popularity </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                        <!-- END DASHBOARD STATS 1-->
-                        <div class="row">
-                            <div class="col-lg-6 col-xs-12 col-sm-12">
-                                <!-- BEGIN PORTLET-->
-                                <div class="portlet light bordered">
+                            <div class="col-md-12">
+                                <!-- BEGIN Portlet PORTLET-->
+                                <div class="portlet light bg-inverse">
                                     <div class="portlet-title">
                                         <div class="caption">
-                                            <i class="icon-bar-chart font-dark hide"></i>
-                                            <span class="caption-subject font-dark bold uppercase">Laporan Baru</span>
-                                            <span class="caption-helper">Statistik mingguan</span>
-                                        </div>
-
-                                    </div>
-                                    <div class="portlet-body">
-                                        <div id="site_statistics_loading">
-                                            <img src="../assets/global/img/loading.gif" alt="loading" /> </div>
-                                        <div id="site_statistics_content" class="display-none">
-                                            <div id="site_statistics" class="chart"> </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- END PORTLET-->
-                            </div>
-                            <div class="col-lg-6 col-xs-12 col-sm-12">
-                                <!-- BEGIN PORTLET-->
-                                <div class="portlet light bordered">
-                                    <div class="portlet-title">
-                                        <div class="caption">
-                                            <i class="icon-share font-red-sunglo hide"></i>
-                                            <span class="caption-subject font-dark bold uppercase">Revenue</span>
-                                            <span class="caption-helper">monthly stats...</span>
-                                        </div>
-                                        <div class="actions">
-                                            <div class="btn-group">
-                                                <a href="" class="btn dark btn-outline btn-circle btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> Filter Range
-                                                    <span class="fa fa-angle-down"> </span>
-                                                </a>
-                                                <ul class="dropdown-menu pull-right">
-                                                    <li>
-                                                        <a href="javascript:;"> Q1 2014
-                                                            <span class="label label-sm label-default"> past </span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:;"> Q2 2014
-                                                            <span class="label label-sm label-default"> past </span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="active">
-                                                        <a href="javascript:;"> Q3 2014
-                                                            <span class="label label-sm label-success"> current </span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:;"> Q4 2014
-                                                            <span class="label label-sm label-warning"> upcoming </span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                            <i class=" fa fa-info-circle font-green-haze"></i>
+                                            <span class="caption-subject bold font-green-haze uppercase"> <?php echo $reportNo; ?> </span>
                                         </div>
                                     </div>
                                     <div class="portlet-body">
-                                        <div id="site_activities_loading">
-                                            <img src="../assets/global/img/loading.gif" alt="loading" /> </div>
-                                        <div id="site_activities_content" class="display-none">
-                                            <div id="site_activities" style="height: 228px;"> </div>
-                                        </div>
-                                        <div style="margin: 20px 0 10px 30px">
-                                            <div class="row">
-                                                <div class="col-md-3 col-sm-3 col-xs-6 text-stat">
-                                                    <span class="label label-sm label-success"> Revenue: </span>
-                                                    <h3>$13,234</h3>
+                                    <?php  $myrow = mysqli_fetch_row($result);
+                                        
+                                        
+                                        do{
+                                        echo"
+                                                <table width='70%' border='1' bordercolor='#CCCCCC'>
+                                                    <tr>
+                                                        <td colspan=2 style='padding:10'>";
+                                                        
+                                                        echo'<img style="width:200px;height:200px;display: block;margin-left: auto;margin-right: auto;" src="data:image/jpeg;base64,'.base64_encode( $myrow[11]).'"/>';
+                                                        
+                                                        echo"</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align='right'><b>Nama Kes :</b></td> <td><i>$myrow[1]</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align='right'><b>Nama penuh mangsa :</b></td> <td><i>$myrow[2]</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align='right'><b>Umur :</b></td> <td><i>$myrow[3]</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align='right'><b>Jantina :</b></td> <td><i>$myrow[4]</i></td>
+                                                    </tr>                                                    
+                                                    <tr>
+                                                        <td align='right'><b>Alamat Kali terakhir dijumpai di  :</b></td> <td><i>$myrow[5]</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align='right'><b>Daerah/Bandar  :</b></td> <td><i>$myrow[6]</i></td>
+                                                    </tr>                                                  
+                                                    <tr>
+                                                        <td align='right'><b>Negeri  :</b></td> <td><i>$myrow[7]</i></td>
+                                                    </tr>                                                      
+                                                    <tr>
+                                                        <td align='right'><b>Tarikh Mangsa Hilang :</b></td> <td><i>$myrow[8]</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align='right'><b>Pakaian terakhir mangsa pakai  :</b></td> <td><i>$myrow[9]</i></td>
+                                                    </tr>                                 
+                                                    <tr>
+                                                        <td align='right'><b>Ciri-ciri peribadi mangsa  :</b></td> <td><i>$myrow[10]</i></td>
+                                                    </tr>                                                                       
+                                                    <tr>
+                                                        <td align='right'><b>Nama pengadu :</b></td> <td><i>$myrow[12]</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align='right'><b>Nombor telefon pengadu :</b></td> <td><i>$myrow[13]</i></td>
+                                                    </tr>                                                 
+                                                    <tr>
+                                                        <td align='right'><b>Email pengadu :</b></td> <td><i>$myrow[14]</i></td>
+                                                    </tr>                                                       
+                                                    <tr>
+                                                        <td align='right'><b>Hubungan Pengadu dengan Mangsa :</b></td> <td><i>$myrow[15]</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align='right'><b>Maklumat tambahan :</b></td> <td><i>$myrow[16]</i></td>
+                                                    </tr>
+                                                </table>
+                                                <br>
+                                                <div class='row'>
+                                                    <div class='col-md-12'>
+                                                        <div class='col-md-2'>
+                                                            <form method='POST' name='form1' action='approveProcess.php'>
+                                                                <input name='Approval' type='hidden' id='Approval' value='$myrow[0]'>
+                                                                <input type='submit' name='accept' class='btn btn-success' value='Lulus'>
+                                                            </form>
+                                                        </div>
+                                                        <div class='col-md-2'>
+                                                            <form method='POST' name='form2' action='deleteProcess.php'>
+                                                                <input name='Delete' type='hidden' id='Delete' value='$myrow[0]'>
+                                                                <input type='submit' name='delete' class='btn btn-danger' value='Padam Rekod'>
+                                                            </form>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="col-md-3 col-sm-3 col-xs-6 text-stat">
-                                                    <span class="label label-sm label-info"> Tax: </span>
-                                                    <h3>$134,900</h3>
-                                                </div>
-                                                <div class="col-md-3 col-sm-3 col-xs-6 text-stat">
-                                                    <span class="label label-sm label-danger"> Shipment: </span>
-                                                    <h3>$1,134</h3>
-                                                </div>
-                                                <div class="col-md-3 col-sm-3 col-xs-6 text-stat">
-                                                    <span class="label label-sm label-warning"> Orders: </span>
-                                                    <h3>235090</h3>
-                                                </div>
-                                            </div>
-                                        </div>
+                                            ";
+                                        }
+                                        while($myrow = mysqli_fetch_row($result) ); ?>
                                     </div>
                                 </div>
-                                <!-- END PORTLET-->
+                                <!-- END Portlet PORTLET-->
                             </div>
                         </div>
-
                     </div>
                     <!-- END CONTENT BODY -->
                 </div>

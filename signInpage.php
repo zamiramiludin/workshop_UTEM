@@ -8,21 +8,17 @@
     <title>Log Masuk</title>
 </head>
 <body class="text-center bg-light">
-  <div class="container w-25 " style="background-color:#ffffff" name="SignInForm" method="POST" action="signInProcess.php">
-    <form class="form-signin">
+  <div class="container w-25 " style="background-color:#ffffff">
+    <form class="form-signin" name="signInForm" method="POST" action="signInProcess.php">
       <img class="img-fluid" src="images/logo2.png" alt="Website Logo" >
       <h1 class="h3 mb-3 font-weight-normal">Sila Log Masuk</h1>
-      <label for="inputEmail" class="sr-only">Nama Pengguna</label>
-      <input id="inputEmail" class="form-control" placeholder="Nama pengguna" required="" autofocus="" type="text">
-      <label for="inputPassword" class="sr-only">Kata Laluan</label>
-      <input id="inputPassword" class="form-control" placeholder="Kata laluan" required="" type="password">
-      <div class="checkbox mb-3">
-        <label>
-          <input value="remember-me" type="checkbox"> Remember me
-        </label>
-      </div>
+      <label for="username" class="sr-only">Nama Pengguna</label>
+      <input id="username" name="username" class="form-control" placeholder="Nama pengguna" required autofocus="" type="text">
+      <label for="password" class="sr-only">Kata Laluan</label>
+      <input id="password" name="password" class="form-control" placeholder="Kata laluan" required type="password">
+      <br />
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
+      <p class="mt-5 mb-3 text-muted">©HIlang 2017/2018</p>
     </form>
   </div>
   
